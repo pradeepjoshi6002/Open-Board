@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Open Board</title>
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <div class="options-cont"><span class="material-icons">menu</span></div>
+    <div class="tools-cont">
+      <div class="pencil"><span class="material-icons">edit</span></div>
+      <div class="eraser"><span class="material-icons">delete</span></div>
+      <div class="download"><span class="material-icons">download</span></div>
+      <div class="upload"><span class="material-icons">upload</span></div>
+      <div class="sticky_notes">
+        <span class="material-icons">sticky_note_2</span>
+      </div>
+      <div class="undo"><span class="material-icons">undo</span></div>
+      <div class="redo"><span class="material-icons">redo</span></div>
+    </div>
+    <div class="pencil-tool-cont">
+      <div class="pencil-width-cont">
+        <input type="range" min="2" max="10" value="3" />
+      </div>
+      <div class="pencil-color-cont">
+        <div class="black pencil-color"></div>
+        <div class="red pencil-color"></div>
+        <div class="blue pencil-color border"></div>
+      </div>
+    </div>
+    <div class="eraser-tool"></div>
+    <script src="./tools.js"></script>
+  </body>
+</html>

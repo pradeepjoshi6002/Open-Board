@@ -8,10 +8,12 @@ hamburgerMenu.addEventListener("click", function () {
   showOption = !showOption;
   if (showOption) {
     toolsCont.style.display = "flex";
-    hamburgerMenu.style.transform = "rotate(90deg)";
+    // hamburgerMenu.style.transform = "rotate(90deg)";
+    hamburgerMenu.children[0].innerText = "close";
   } else {
     toolsCont.style.display = "none";
-    hamburgerMenu.style.transform = "rotate(0deg)";
+    // hamburgerMenu.style.transform = "rotate(0deg)";
+    hamburgerMenu.children[0].innerText = "menu";
     pencilTool.style.display = "none";
   }
 });

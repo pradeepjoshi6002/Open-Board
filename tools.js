@@ -15,6 +15,7 @@ const pencilColor = document.querySelectorAll(".pencil-color");
 const eraser = document.querySelector(".eraser");
 const eraserTool = document.querySelector(".eraser-tool-cont");
 const stickyNote = document.querySelector(".sticky-notes");
+const upload = document.querySelector(".upload");
 
 //functions
 
@@ -134,6 +135,39 @@ function dragAndDrop(obj, event) {
     obj.onmouseup = null;
   };
 }
+
+upload.addEventListener("click", () => {
+  closeAllTools();
+  //opne file explorer
+  let selectFile = document.createElement("input");
+  selectFile.setAttribute("type", "file");
+  selectFile.click();
+  //
+  selectFile.addEventListener("change", (e) => {
+    let selectedFile = selectFile.files[0];
+    let fileUrl = URL.createObjectURL(selectedFile);
+    console.log(fileUrl);
+    const obj = document.createElement("div");
+    obj.classList.add("sticky-note-cont");
+    obj.innerHTML = `<div class="sticky-tool-cont">
+                      <div class="sticky-min"><span class="material-icons">remove</span></div>
+                      <div class="sticky-remove"><span class="material-icons">close</span></div>
+                    </div>
+                    <img class="sticky-taskarea" src="${fileUrl}">
+                  `;
+    obj.querySelector(".sticky-taskarea").style.padding = "0";
+    document.body.appendChild(obj);
+    let stickyMinimize = obj.querySelector(".sticky-min");
+    let stickyRemove = obj.querySelector(".sticky-remove");
+    noteActions(stickyMinimize, stickyRemove, obj);
+    obj.onmousedown = function (e) {
+      dragAndDrop(obj, e);
+    };
+    obj.ondragstart = function () {
+      return false;
+    };
+  });
+});
 
 function closeAllTools() {
   if (showPencilTool) {

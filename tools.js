@@ -56,7 +56,7 @@ pencilColor.forEach((ele) => {
     });
     ele.style.outlineColor = ele.classList[0];
     tool.strokeStyle = ele.classList[0];
-    tool.ele.classList.add("selected-color");
+    ele.classList.add("selected-color");
   });
 });
 eraser.addEventListener("click", () => {

@@ -17,6 +17,7 @@ const stickyNote = document.querySelector(".sticky-notes");
 const upload = document.querySelector(".upload");
 const pencilWidth = document.querySelector(".pencil-width-cont input");
 const eraserWidth = document.querySelector(".eraser-tool-cont input");
+const download = document.querySelector(".download");
 
 //default values
 
@@ -203,6 +204,15 @@ upload.addEventListener("click", () => {
       return false;
     };
   });
+});
+
+download.addEventListener("click", () => {
+  console.log("downlaoded");
+  const url = canvas.toDataURL();
+  let anchor = document.createElement("a");
+  anchor.href = url;
+  anchor.download = "board.jpg";
+  anchor.click();
 });
 
 function closeAllTools() {

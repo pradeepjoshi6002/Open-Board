@@ -8,7 +8,6 @@ let showEraserTool = false;
 
 const hamburgerMenu = document.querySelector(".options-cont");
 const toolsCont = document.querySelector(".tools-cont");
-const tools = document.querySelectorAll(".tools-cont div");
 const pencil = document.querySelector(".pencil");
 const pencilTool = document.querySelector(".pencil-tool-cont");
 const pencilColor = document.querySelectorAll(".pencil-color");
@@ -16,6 +15,7 @@ const eraser = document.querySelector(".eraser");
 const eraserTool = document.querySelector(".eraser-tool-cont");
 const stickyNote = document.querySelector(".sticky-notes");
 const upload = document.querySelector(".upload");
+const pencilWidth = document.querySelector(".pencil-width-cont input");
 
 //functions
 
@@ -46,6 +46,19 @@ pencil.addEventListener("click", () => {
     pencilTool.style.display = "none";
   }
 });
+pencilWidth.addEventListener("change", () => {
+  tool.lineWidth = pencilWidth.value;
+});
+pencilColor.forEach((ele) => {
+  ele.addEventListener("click", () => {
+    pencilColor.forEach((ele1) => {
+      ele1.classList.remove("selected-color");
+    });
+    ele.style.outlineColor = ele.classList[0];
+    tool.strokeStyle = ele.classList[0];
+    tool.ele.classList.add("selected-color");
+  });
+});
 eraser.addEventListener("click", () => {
   showEraserTool = !showEraserTool;
   if (showEraserTool) {
@@ -74,7 +87,7 @@ stickyNote.addEventListener("click", (e) => {
     <span class="material-icons">close</span>
   </div>
 </div>
-<textarea class="sticky-taskarea"></textarea>`;
+<textarea spellcheck="false" class="sticky-taskarea"></textarea>`;
   document.body.appendChild(obj);
   let stickyMinimize = obj.querySelector(".sticky-min");
   let stickyRemove = obj.querySelector(".sticky-remove");

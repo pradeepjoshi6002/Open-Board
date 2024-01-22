@@ -16,6 +16,17 @@ const eraserTool = document.querySelector(".eraser-tool-cont");
 const stickyNote = document.querySelector(".sticky-notes");
 const upload = document.querySelector(".upload");
 const pencilWidth = document.querySelector(".pencil-width-cont input");
+const eraserWidth = document.querySelector(".eraser-tool-cont input");
+
+//default values
+
+let eraserWidthValue = eraserWidth.value;
+let eraserColorValue = "white";
+let pencilWidthValue = pencilWidth.value;
+let pencilColorValue = "blue";
+
+tool.lineWidth = pencilWidthValue;
+tool.strokeStyle = pencilColorValue;
 
 //functions
 
@@ -38,6 +49,8 @@ pencil.addEventListener("click", () => {
       showEraserTool = !showEraserTool;
       eraser.style.color = "black";
       eraserTool.style.display = "none";
+      tool.lineWidth = pencilWidthValue;
+      tool.strokeStyle = pencilColorValue;
     }
     pencil.style.color = "royalblue";
     pencilTool.style.display = "flex";
@@ -47,15 +60,17 @@ pencil.addEventListener("click", () => {
   }
 });
 pencilWidth.addEventListener("change", () => {
-  tool.lineWidth = pencilWidth.value;
+  pencilWidthValue = pencilWidth.value;
+  tool.lineWidth = pencilWidthValue;
 });
 pencilColor.forEach((ele) => {
   ele.addEventListener("click", () => {
     pencilColor.forEach((ele1) => {
       ele1.classList.remove("selected-color");
     });
-    ele.style.outlineColor = ele.classList[0];
-    tool.strokeStyle = ele.classList[0];
+    pencilColorValue = ele.classList[0];
+    ele.style.outlineColor = pencilColorValue;
+    tool.strokeStyle = pencilColorValue;
     ele.classList.add("selected-color");
   });
 });
@@ -67,14 +82,22 @@ eraser.addEventListener("click", () => {
       pencil.style.color = "black";
       pencilTool.style.display = "none";
     }
+    tool.strokeStyle = eraserColorValue;
+    tool.lineWidth = eraserWidthValue;
     eraser.style.color = "royalblue";
     eraserTool.style.display = "flex";
   } else {
+    tool.lineWidth = pencilWidthValue;
+    tool.strokeStyle = pencilColorValue;
     eraser.style.color = "black";
     eraserTool.style.display = "none";
   }
 });
 
+eraserWidth.addEventListener("change", () => {
+  eraserWidthValue = eraserWidth.value;
+  tool.lineWidth = eraserWidthValue;
+});
 stickyNote.addEventListener("click", (e) => {
   closeAllTools();
   const obj = document.createElement("div");

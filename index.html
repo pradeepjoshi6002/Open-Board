@@ -12,12 +12,12 @@
   </head>
   <body>
     <div class="options-cont"><span class="material-icons">menu</span></div>
-    <div class="tools-cont">
+    <div class="tools-cont scale-tools">
       <div class="pencil"><span class="material-icons">edit</span></div>
       <div class="eraser"><span class="material-icons">delete</span></div>
       <div class="download"><span class="material-icons">download</span></div>
       <div class="upload"><span class="material-icons">upload</span></div>
-      <div class="sticky_notes">
+      <div class="sticky-notes">
         <span class="material-icons">sticky_note_2</span>
       </div>
       <div class="undo"><span class="material-icons">undo</span></div>
@@ -30,10 +30,23 @@
       <div class="pencil-color-cont">
         <div class="black pencil-color"></div>
         <div class="red pencil-color"></div>
-        <div class="blue pencil-color border"></div>
+        <div class="blue pencil-color selected-color"></div>
       </div>
     </div>
-    <div class="eraser-tool"></div>
+    <div class="eraser-tool-cont">
+      <input type="range" min="10" max="50" value="20" />
+    </div>
+    <!-- <div class="sticky-note-cont">
+      <div class="sticky-tool-cont">
+        <div class="sticky-min">
+          <span class="material-icons">remove</span>
+        </div>
+        <div class="sticky-close">
+          <span class="material-icons">close</span>
+        </div>
+      </div>
+      <textarea class="sticky-taskarea"></textarea>
+    </div> -->
     <script src="./tools.js"></script>
   </body>
 </html>

@@ -128,8 +128,12 @@ body {
 .sticky-min {
   background-color: green;
 }
-.sticky-close {
+.sticky-remove {
   background-color: red;
+}
+.sticky-min:active,
+.sticky-remove :active {
+  opacity: 0.7;
 }
 .sticky-taskarea {
   border-radius: 0 0 5px 5px;

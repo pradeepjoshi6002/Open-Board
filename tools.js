@@ -15,7 +15,6 @@ const pencilColor = document.querySelectorAll(".pencil-color");
 const eraser = document.querySelector(".eraser");
 const eraserTool = document.querySelector(".eraser-tool-cont");
 const stickyNote = document.querySelector(".sticky-notes");
-const stickyNoteCont = document.querySelector(".sticky-note-cont");
 
 //functions
 
@@ -70,12 +69,15 @@ stickyNote.addEventListener("click", (e) => {
   <div class="sticky-min">
     <span class="material-icons">remove</span>
   </div>
-  <div class="sticky-close">
+  <div class="sticky-remove">
     <span class="material-icons">close</span>
   </div>
 </div>
 <textarea class="sticky-taskarea"></textarea>`;
   document.body.appendChild(obj);
+  let stickyMinimize = obj.querySelector(".sticky-min");
+  let stickyRemove = obj.querySelector(".sticky-remove");
+  noteActions(stickyMinimize, stickyRemove, obj);
   obj.onmousedown = function (e) {
     dragAndDrop(obj, e);
   };
@@ -84,20 +86,39 @@ stickyNote.addEventListener("click", (e) => {
   };
 });
 
-function dragAndDrop(ball, event) {
-  let shiftX = event.clientX - ball.getBoundingClientRect().left;
-  let shiftY = event.clientY - ball.getBoundingClientRect().top;
+function noteActions(min, remove, note) {
+  min.addEventListener("click", () => {
+    console.log("minimize notes taskarea");
+    let stickyTaskArea = note.querySelector(".sticky-taskarea");
+    if (
+      getComputedStyle(stickyTaskArea).getPropertyValue("display") === "none"
+    ) {
+      min.children[0].innerText = "remove";
+      stickyTaskArea.style.display = "block";
+    } else {
+      min.children[0].innerText = "open_in_full";
+      stickyTaskArea.style.display = "none";
+    }
+  });
+  remove.addEventListener("click", () => {
+    note.remove();
+  });
+}
 
-  ball.style.position = "absolute";
-  ball.style.zIndex = 1000;
+function dragAndDrop(obj, event) {
+  let shiftX = event.clientX - obj.getBoundingClientRect().left;
+  let shiftY = event.clientY - obj.getBoundingClientRect().top;
+
+  obj.style.position = "absolute";
+  obj.style.zIndex = 1000;
 
   moveAt(event.pageX, event.pageY);
 
   // moves the ball at (pageX, pageY) coordinates
   // taking initial shifts into account
   function moveAt(pageX, pageY) {
-    ball.style.left = pageX - shiftX + "px";
-    ball.style.top = pageY - shiftY + "px";
+    obj.style.left = pageX - shiftX + "px";
+    obj.style.top = pageY - shiftY + "px";
   }
 
   function onMouseMove(event) {
@@ -108,9 +129,9 @@ function dragAndDrop(ball, event) {
   document.addEventListener("mousemove", onMouseMove);
 
   // drop the ball, remove unneeded handlers
-  ball.onmouseup = function () {
+  obj.onmouseup = function () {
     document.removeEventListener("mousemove", onMouseMove);
-    ball.onmouseup = null;
+    obj.onmouseup = null;
   };
 }
 

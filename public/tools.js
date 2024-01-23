@@ -18,7 +18,8 @@ const upload = document.querySelector(".upload");
 const pencilWidth = document.querySelector(".pencil-width-cont input");
 const eraserWidth = document.querySelector(".eraser-tool-cont input");
 const download = document.querySelector(".download");
-
+const undo = document.querySelector(".undo");
+const redo = document.querySelector(".redo");
 //default values
 
 let eraserWidthValue = eraserWidth.value;
@@ -215,6 +216,26 @@ download.addEventListener("click", () => {
   anchor.click();
 });
 
+undo.addEventListener("click", () => {
+  if (tracker > 0) {
+    tracker--;
+  }
+  undoRedoCanvas();
+});
+redo.addEventListener("click", () => {
+  if (tracker < undoRedoTracker.length - 1) {
+    tracker++;
+  }
+  undoRedoCanvas();
+});
+
+function undoRedoCanvas() {
+  let img = new Image();
+  img.src = undoRedoTracker[tracker];
+  img.onload = (e) => {
+    tool.drawImage(img, 0, 0, canvas.width, canvas.height);
+  };
+}
 function closeAllTools() {
   if (showPencilTool) {
     showPencilTool = !showPencilTool;

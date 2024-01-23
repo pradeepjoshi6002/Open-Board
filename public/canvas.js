@@ -8,6 +8,9 @@ let tool = canvas.getContext("2d");
 tool.lineWidth = 3;
 tool.strokeStyle = "blue";
 
+let tracker;
+const undoRedoTracker = [];
+
 // mousedown->start new path, mousemove->path fill graphics
 canvas.addEventListener("mousedown", (e) => {
   mouseDownFlag = !mouseDownFlag;
@@ -20,6 +23,9 @@ canvas.addEventListener("mousemove", (e) => {
 });
 canvas.addEventListener("mouseup", (e) => {
   mouseDownFlag = !mouseDownFlag;
+
+  undoRedoTracker.push(canvas.toDataURL());
+  tracker = undoRedoTracker.length - 1;
 });
 
 function beginPath(strokeObj) {

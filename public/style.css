@@ -63,7 +63,9 @@ body {
 }
 .sticky-notes:active,
 .upload:active,
-.download:active {
+.download:active,
+.undo:active,
+.redo:active {
   color: royalblue;
 }
 .eraser-tool-cont {
